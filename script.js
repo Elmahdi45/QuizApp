@@ -73,7 +73,8 @@ function showQuestion() {
 
         
          button.addEventListener("click" ,()=> {
-
+          if (answered) return;  
+           answered = true; 
          if(ans.correct==true){
              button.style.background="green";
              score++;
@@ -90,15 +91,20 @@ function showQuestion() {
     })
     
 }
+let answered = false;
 
 function nextClicked(){
      index++;
-     
      questionNumber++;
      showQuestion();
 }
 
 nextButton.addEventListener("click",()=>{
+      if (!answered) {
+        alert("Please select an answer before moving on!");
+        return; 
+    }
+     answered = false;
      if(questionNumber<3){
          nextClicked();
      }
